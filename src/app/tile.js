@@ -16,8 +16,24 @@ The tile should render with the classes...
 
 import React from 'react';
 
-export default function Tile(props){
+export default function Tile(tile){
+  let optionsTile;
+
+  switch (tile.value){
+      case 1:
+        optionsTile = { className: "tile plr1", text: "X"};
+        break;
+      case 2:
+        optionsTile = { className: "tile plr2", text: "O" };
+        break;
+      default:
+        optionsTile = { className: "tile", text: "" };
+        break;
+  }
+
   return (
-    <div>To be implemented...</div>
+    <div className={optionsTile.className} onClick={() => tile.move()}>
+        {optionsTile.text}
+    </div>
   );
 }

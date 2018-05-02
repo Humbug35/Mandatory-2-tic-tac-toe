@@ -19,9 +19,38 @@ and all tiles within an element with a `board` CSS class.
 */
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      game: newGame()
+    };
+  }
+  playerMakeMove(index, valuePlayer){
+    if(valuePlayer === 1 || valuePlayer === 2) return;
+
+    const newState = makeMove(this.state.game, index);
+    this.setState({ game: newState });
+
+  }
+  restartGame(){
+    this.setState(this.state.game = newGame())
+  }
   render(){
     return (
-      <div>To be implemented...</div>
+      <div className="container">
+        <div className="message">
+            <Message/>
+        </div>
+        <div className="board">
+            {this.state.game.board.map((valueTile, index) => (
+                  <Tile value={valueTile}
+                        key={index}
+                        move={() => this.playerMakeMove(index, valueTile)}
+                  />
+            ))}
+        </div>
+        <button className="restart-game" onClick={() => this.restartGame()}>Spela Igen</button>
+      </div>
     );
   }
 }
