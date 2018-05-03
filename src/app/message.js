@@ -16,10 +16,19 @@ export default function Message(props){
     playerTwoWin: 'Spelet slut, nu vann spelare 2, HURRA!',
     draw: 'Spelet slut, ingen vann. Spela igen? Tryck på spela igen'
   };
-    if(props.showCurrentGameMessage.board.includes(0) === false) {
+
+    if(props.showCurrentGameMessage.winner === 1 || props.showCurrentGameMessage.winner === 2) {
+        if (props.showCurrentGameMessage.winner === 1) {
+            currentMessage = gameMessage.playerOneWin;
+        } else {
+            currentMessage = gameMessage.playerTwoWin;
+        }
+    }
+    else if(props.showCurrentGameMessage.board.includes(0) === false) {
       currentMessage = gameMessage.draw;
-    }else{
-        if(props.showCurrentGameMessage.state === "plr1") {
+    }
+    else{
+        if(props.showCurrentGameMessage.playerState === "plr1") {
             currentMessage = gameMessage.playerOne;
         }else {
             currentMessage = gameMessage.playerTwo;

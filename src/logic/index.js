@@ -30,10 +30,11 @@ The board array goes from top left to bottom right. For example, the array
 The newGame function will return a valid new game object.
 */
 export const newGame = () => ({
-  state: 'plr1',
+  playerState: 'plr1',
   board: [0,0,0,
           0,0,0,
           0,0,0],
+  winner: 0,
   line: []
 });
 
@@ -48,7 +49,10 @@ an unchanged game will be returned.
 */
 
 export const makeMove = (game, pos) => {
-    const playerRightNow = game.state === 'plr1' ? 1 : 2;
+    const playerRightNow = game.playerState === 'plr1' ? 1 : 2;
     const newBoard = game.board.map((tile, index) => pos === index ? playerRightNow : tile);
-    return {board: newBoard, state: game.state === 'plr1' ? 'plr2' : 'plr1'};
+    const winPatterns = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+    const winningLine = winPatterns.find(winners => winners.every(value => newBoard[value] === playerRightNow));
+    const winner = !!winningLine ? playerRightNow : 0;
+    return {board: newBoard, playerState: game.playerState === 'plr1' ? 'plr2' : 'plr1', winner};
 };

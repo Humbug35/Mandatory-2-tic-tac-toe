@@ -27,7 +27,7 @@ export default class App extends React.Component {
   }
   playerMakeMove(index, valuePlayer){
     if(valuePlayer === 1 || valuePlayer === 2) return;
-
+    if(this.state.game.winner) return;
     const newState = makeMove(this.state.game, index);
     this.setState({ game: newState });
 
