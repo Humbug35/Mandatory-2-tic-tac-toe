@@ -37,19 +37,20 @@ export default class App extends React.Component {
   }
   render(){
     return (
-      <div className="container">
+      <div>
+        <h2>Tre i rad</h2>
         <div className="message">
-            <Message/>
+            <Message showCurrentGameMessage={this.state.game}/>
         </div>
         <div className="board">
             {this.state.game.board.map((valueTile, index) => (
                   <Tile value={valueTile}
                         key={index}
-                        move={() => this.playerMakeMove(index, valueTile)}
+                        playerMove={() => this.playerMakeMove(index, valueTile)}
                   />
             ))}
         </div>
-        <button className="restart-game" onClick={() => this.restartGame()}>Spela Igen</button>
+        <button onClick={() => this.restartGame()}>Spela Igen</button>
       </div>
     );
   }

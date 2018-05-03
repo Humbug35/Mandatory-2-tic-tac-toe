@@ -21,19 +21,19 @@ export default function Tile(tile){
 
   switch (tile.value){
       case 1:
-        optionsTile = { className: "tile plr1", text: "X"};
+        optionsTile = { className: "tile plr1", token: "X"};
         break;
       case 2:
-        optionsTile = { className: "tile plr2", text: "O" };
+        optionsTile = { className: "tile plr2", token: "O" };
         break;
       default:
-        optionsTile = { className: "tile", text: "" };
+        optionsTile = { className: "tile", token: "" };
         break;
   }
 
   return (
-    <div className={optionsTile.className} onClick={() => tile.move()}>
-        {optionsTile.text}
+    <div className={optionsTile.className} onClick={() => tile.playerMove()}>
+        {optionsTile.token}
     </div>
   );
 }
