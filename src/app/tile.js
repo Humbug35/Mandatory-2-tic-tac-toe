@@ -31,8 +31,9 @@ export default function Tile(tile){
         break;
   }
 
+
   return (
-    <div className={optionsTile.className} onClick={() => tile.playerMove()}>
+    <div className={tile.playerWin ? `${optionsTile.className} line` : optionsTile.className} onClick={() => tile.playerMove()}>
         {optionsTile.token}
     </div>
   );

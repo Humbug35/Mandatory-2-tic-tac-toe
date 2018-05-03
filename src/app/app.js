@@ -47,6 +47,7 @@ export default class App extends React.Component {
                   <Tile value={valueTile}
                         key={index}
                         playerMove={() => this.playerMakeMove(index, valueTile)}
+                        playerWin={this.state.game.line.includes(index)}
                   />
             ))}
         </div>
